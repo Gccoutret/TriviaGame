@@ -1,32 +1,52 @@
 $(document).ready(function(){
 
   var questions = [
-    {question1: "What did I eat for breakfast?",
-    answer1:[{
-      a: "Nothing",
-      b: "Tacos",
-      c: "Bacon and Eggs",
-      d: "Just Coffee"
-    }],
-    correct1: "d"
+    {question: "What did I eat for breakfast?",
+    answers:[
+      {answerChoice: " Nothing ",
+      isCorrect: false,
+      name: "3"},
+      {answerChoice: " Eggs ",
+      isCorrect: false,
+      name: "3"},
+      {answerChoice: " Tacos ",
+      isCorrect: false,
+      name: "3"},
+      {answerChoice: " Just Coffee ",
+      isCorrect: true,
+      name: "3"},],
     },
-    {question2: "How is my grasp of JS?",
-      answer2:[{
-        a: "So good",
-        b: "Like, the best",
-        c: "It's getting there, but im still lost most of the time",
-        d: "What is JS?"
-      }],
-      correct2: "c"
+    
+    {question: " How is my grasp of JS? ",
+      answers:[
+        {answerChoice: " What is JS? ",
+        isCorrect: false,
+        name: "2"},
+        {answerChoice: " Im the best ",
+        isCorrect: false,
+        name: "2"},
+        {answerChoice: " Its getting there but i'm pretty lost most of the time ",
+        isCorrect: true,
+        name: "2"},
+        {answerChoice: " Ive got it pretty well ",
+        isCorrect: false,
+        name: "2"}],
     },
-    {question3: "What is my dog's name?",
-      answer3:[{
-        a: "Spot",
-        b: "Rauley",
-        c: "Fuego",
-        d: "PoopMachine9000"
-      }],
-      correct3: "b"
+
+    {question: "What is my dog's name?",
+      answers:[
+        {answerChoice: " Rauley ",
+      isCorrect: true,
+      name: "1"},
+      {answerChoice: " Bravo ",
+      isCorrect: false,
+      name: "1"},
+      {answerChoice: " Fuego ",
+      isCorrect: false,
+      name: "1"},
+      {answerChoice: " Spot ",
+      isCorrect: false,
+      name: "1"}],
     }
   ]
   var answerCorrect=0;
@@ -35,7 +55,7 @@ $(document).ready(function(){
   var questionTracker=0;
 
   function startGame(){
-    showQuestions
+    // showQuestions
   }
 
   function showQuestions(){
@@ -45,17 +65,23 @@ $(document).ready(function(){
       
       $('.question-list').append(title)
       list.answers.forEach(function(answer){
-        var radioBtn= $("<input type='radio'>")
+        var radioBtn= $("<input type='radio'>");
+        var label= $("<label>")
+        label.text(answer.answerChoice)
+        radioBtn.attr("name",answer.name)
+        console.log(label)
+        $(".buttons").append(radioBtn)
+        $(".buttons").append(label)
       })
     })
-    $("#question-list").append(questions)
+      $('.question-list').append("<button>")
   }
 
   function updateScore(){
+    //I would need an if statement to count "corrects" when clikcking on a "true" 
+    //answer but I dont think this would work because you could just click on a true statement over and over. 
+    
 
-  }
-
-  function resetGame(){
 
   }
 
@@ -65,8 +91,17 @@ $(document).ready(function(){
 
   function startTimer(){
 
+    setTimeout(timeUp, 1000 * 3600);
+  
   }
-showQuestions()
+
+  function timeUp() {
+     
+     
+      $("#time-left").append("<h2>Time's Up!</h2>");
+      alert("time is up");
+  }
+ showQuestions()
    
 
 
